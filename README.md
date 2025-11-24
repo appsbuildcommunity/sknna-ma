@@ -1,2 +1,2 @@
 # sknna-ma
-Direct landlord–tenant rental platform for Morocco. Eliminates intermediaries, adds identity verification, smart search, and interactive map features
+Platform for students, interns, and young professionals to find rentals in Morocco without intermediaries. Web + mobile solution connecting owners and tenants directly, with secure authentication, map-based search, and transparent listings.
