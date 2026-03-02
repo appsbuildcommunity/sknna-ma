@@ -1,0 +1,71 @@
+# =========================
+# Documentation & General
+# =========================
+HELP.md
+
+# =========================
+# Build Tools (Maven & NetBeans)
+# =========================
+target/
+build/
+dist/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+.mvn/wrapper/maven-wrapper.jar
+
+# Exceptions pour garder les dossiers de build spécifiques si nécessaire
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# =========================
+# IDE - IntelliJ IDEA
+# =========================
+.idea/
+*.iws
+*.iml
+*.ipr
+*.iml_
+
+# =========================
+# IDE - VS Code
+# =========================
+.vscode/
+
+# =========================
+# IDE - Eclipse / STS
+# =========================
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# =========================
+# IDE - NetBeans (Private)
+# =========================
+/nbproject/private/
+
+# =========================
+# Environment / Secrets (IMPORTANT)
+# =========================
+.env
+.env.*
+application-*.yml
+application-*.properties
+
+# =========================
+# Logs
+# =========================
+*.log
+full-output.log
+
+# =========================
+# OS Files (System)
+# =========================
+.DS_Store
+Thumbs.db
