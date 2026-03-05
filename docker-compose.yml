@@ -1,5 +1,5 @@
 services:
-  # 1. Base de données
+  # 1. Database
   db:
     image: postgres:15
     container_name: seknna-db
@@ -14,7 +14,7 @@ services:
     networks:
       - seknna-network
 
-  # 2. Backend (Spring Boot)
+  # 2. Backend
   backend:
     build: ./backend
     container_name: seknna-backend
@@ -30,12 +30,15 @@ services:
     networks:
       - seknna-network
 
-  # 3. Frontend (React + Vite)
+  # 3. Frontend
   frontend:
     build: ./frontend
     container_name: seknna-frontend
     ports:
-      - "${FRONTEND_PORT}:80"
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     depends_on:
       - backend
     networks:
