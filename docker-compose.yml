@@ -1,0 +1,68 @@
+services:
+  # 1. Database
+  db:
+    image: postgres:15
+    container_name: seknna-db
+    environment:
+      POSTGRES_DB: sknna
+      POSTGRES_USER: sknna_user
+      POSTGRES_PASSWORD: secret123
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - seknna-network
+
+  # 2. Backend
+  backend:
+    build: ./backend
+    container_name: seknna-backend
+    ports:
+      - "${SPRING_PORT}:${SPRING_PORT}"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/${DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - seknna-network
+
+  # 3. Frontend
+  frontend:
+    build: ./frontend
+    container_name: seknna-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - seknna-network
+
+  # 4. pgAdmin 4
+  pgadmin:
+    container_name: seknna-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}   # or any password you like
+    ports:
+      - "5050:80"   # host port 5050 → container 80
+    depends_on:
+      - db
+    networks:
+      - seknna-network
+    restart: unless-stopped   # optional: always restart if crashes
+
+# Networks
+networks:
+  seknna-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  postgres_data:
