@@ -62,6 +62,8 @@ services:
 networks:
   seknna-network:
     driver: bridge
+    driver_opts :
+      com.docker.network.driver.mtu: 1450
 
 # Volumes
 volumes:
