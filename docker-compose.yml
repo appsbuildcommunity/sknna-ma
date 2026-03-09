@@ -2,7 +2,7 @@ services:
   # 1. Database
   db:
     image: postgres:15
-    container_name: seknna-db
+    container_name: sknna-db
     environment:
       POSTGRES_DB: sknna
       POSTGRES_USER: sknna_user
@@ -10,14 +10,14 @@ services:
     ports:
       - "${DB_PORT}:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/vaar/lib/postgresql/data
     networks:
       - seknna-network
 
   # 2. Backend
   backend:
     build: ./backend
-    container_name: seknna-backend
+    container_name: seknna-back-end
     ports:
       - "${SPRING_PORT}:${SPRING_PORT}"
     environment:
@@ -32,7 +32,7 @@ services:
   # 3. Frontend
   frontend:
     build: ./frontend
-    container_name: seknna-frontend
+    container_name: seknna-front-end
     ports:
       - "5173:5173"
     volumes:
@@ -45,13 +45,13 @@ services:
 
   # 4. pgAdmin 4
   pgadmin:
-    container_name: seknna-pgadmin
+    container_name: seknna-pg-admin
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}   # or any password you like
     ports:
-      - "5050:80"   # host port 5050 → container 80
+      - "5051:80"   # host port 5050 → container 80
     depends_on:
       - db
     networks:
@@ -62,6 +62,8 @@ services:
 networks:
   seknna-network:
     driver: bridge
+    driver_opts :
+      com.docker.network.driver.mtu: 1450
 
 # Volumes
 volumes:
