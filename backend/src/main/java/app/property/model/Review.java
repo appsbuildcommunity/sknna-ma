@@ -1,20 +1,19 @@
-package app.booking.model;
+package app.property.model;
 
-import app.property.model.Property;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(
-        name = "bookings",
+        name = "reviews",
         uniqueConstraints = {
+                // Un tenant ne peut laisser qu'un seul avis par annonce
                 @UniqueConstraint(
-                        name = "uq_active_booking",
+                        name = "uq_review_tenant_property",
                         columnNames = {"property_id", "tenant_id"}
                 )
         }
@@ -23,7 +22,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Booking {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -35,32 +34,17 @@ public class Booking {
     @ToString.Exclude
     private Property property;
 
-    // UUIDs bruts — pas de FK JPA cross-package
+    // UUID brut — référence Tenant du Groupe B/P2
     @Column(nullable = false, updatable = false)
     private UUID tenantId;
 
-    @Column(nullable = false, updatable = false)
-    private UUID landlordId;
+    @Column(nullable = false)
+    private Integer rating; // 1 à 5
 
     @Column(columnDefinition = "TEXT")
-    private String message;
-
-    @Column(length = 500)
-    private String responseMessage;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    @Builder.Default
-    private BookingStatus status = BookingStatus.pending;
+    private String comment;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
-
-    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ToString.Exclude
-    private Contract contract;
 }

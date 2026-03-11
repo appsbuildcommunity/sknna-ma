@@ -64,7 +64,8 @@ public class Property {
     @Builder.Default
     private List<String> pictures = new ArrayList<>();
 
-    @ElementCollection
+    // MVP : tags stockés comme strings simples
+    @ElementCollection // dit à JPA que c'est une collection de valeurs simples pas d'entitées
     @CollectionTable(
             name = "property_tags",
             joinColumns = @JoinColumn(name = "property_id")
@@ -88,4 +89,9 @@ public class Property {
     @Builder.Default
     @ToString.Exclude
     private List<Booking> bookings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    @ToString.Exclude
+    private List<Review> reviews = new ArrayList<>();
 }
