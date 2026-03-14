@@ -16,7 +16,9 @@ services:
 
   # 2. Backend
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      network: host
     container_name: seknna-backend
     ports:
       - "8080:8080"
@@ -31,7 +33,9 @@ services:
 
   # 3. Frontend
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      network: host
     container_name: seknna-frontend
     ports:
       - "5173:5173"
@@ -62,7 +66,7 @@ services:
 networks:
   seknna-network:
     driver: bridge
-    driver_opts :
+    driver_opts:
       com.docker.network.driver.mtu: 1450
 
 # Volumes
