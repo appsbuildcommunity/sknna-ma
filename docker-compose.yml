@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: sknna_user
       POSTGRES_PASSWORD: secret123
     ports:
-      - "${DB_PORT}:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -16,10 +16,12 @@ services:
 
   # 2. Backend
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      network: host
     container_name: seknna-backend
     ports:
-      - "${SPRING_PORT}:${SPRING_PORT}"
+      - "8080:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/${DB_NAME}
       - SPRING_DATASOURCE_USERNAME=${DB_USER}
@@ -31,7 +33,9 @@ services:
 
   # 3. Frontend
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      network: host
     container_name: seknna-frontend
     ports:
       - "5173:5173"
@@ -62,6 +66,8 @@ services:
 networks:
   seknna-network:
     driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
 
 # Volumes
 volumes:
