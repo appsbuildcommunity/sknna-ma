@@ -62,5 +62,5 @@ public class Booking {
 
     @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private Contract contract;
+    private BookingAgreement contract;
 }
