@@ -18,8 +18,9 @@ public interface PropertyMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "bookings", ignore = true)
     @Mapping(target = "reviews", ignore = true)
-    @Mapping(target = "postTenants", ignore = true)
-    @Mapping(target = "tags", ignore = true) // géré manuellement dans le service
+    @Mapping(target = "tenantPosts", ignore = true)
+    @Mapping(target = "landlordPost", ignore = true)
+    @Mapping(target = "tags", ignore = true)
     Property toEntity(PropertyRequest request);
 
     @Mapping(target = "tags", expression = "java(mapTags(property.getTags()))")
@@ -30,12 +31,12 @@ public interface PropertyMapper {
 
     default List<String> mapTags(Set<Tag> tags) {
         if (tags == null) return List.of();
-        return tags.stream().map(Tag::getName).collect(Collectors.toList());
+        return tags.stream()
+                .map(Tag::getName)
+                .collect(Collectors.toList());
     }
 
     default List<String> mapPictures(Property property) {
-        // Pictures liées via l'entité Picture — pour MVP retourne liste vide
-        // À compléter quand le service Picture sera implémenté
         return List.of();
     }
 
@@ -46,7 +47,8 @@ public interface PropertyMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "bookings", ignore = true)
     @Mapping(target = "reviews", ignore = true)
-    @Mapping(target = "postTenants", ignore = true)
+    @Mapping(target = "tenantPosts", ignore = true)
+    @Mapping(target = "landlordPost", ignore = true)
     @Mapping(target = "tags", ignore = true)
     void updateEntity(PropertyRequest request, @MappingTarget Property property);
 }

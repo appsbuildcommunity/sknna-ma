@@ -20,10 +20,6 @@ public class Picture {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
-    // UUID brut — peut référencer un PostTenant ou PostLandlord
-    @Column(nullable = false)
-    private UUID postId;
-
     // Discriminant pour savoir à quel type de post appartient la photo
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)

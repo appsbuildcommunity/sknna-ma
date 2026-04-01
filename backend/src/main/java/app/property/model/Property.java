@@ -1,6 +1,8 @@
 package app.property.model;
 
 import app.booking.model.Booking;
+import app.post.model.PostLandlord;
+import app.post.model.PostTenant;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -83,4 +85,10 @@ public class Property {
     @Builder.Default
     @ToString.Exclude
     private Set<Tag> tags = new HashSet<>();
+
+    @OneToOne(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PostLandlord landlordPost;
+
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PostTenant> tenantPosts = new ArrayList<>();
 }

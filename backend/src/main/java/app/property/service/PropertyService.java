@@ -1,6 +1,5 @@
 package app.property.service;
 
-import app.common.exception.BusinessException;
 import app.common.exception.ForbiddenException;
 import app.common.exception.ResourceNotFoundException;
 import app.property.dto.PropertyMapper;
