@@ -1,4 +1,4 @@
-package app.user.model;
+package app.user.landlord.model;
 
 public enum VerificationStatus {
     pending,
