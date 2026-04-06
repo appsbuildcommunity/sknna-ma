@@ -1,4 +1,4 @@
-package app.user.tenant.model;
+package app.user.model;
 
 public enum TenantType {
     student,

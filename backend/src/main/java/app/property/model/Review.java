@@ -34,7 +34,7 @@ public class Review {
     @ToString.Exclude
     private Property property;
 
-    // UUID brut — référence Tenant du Groupe B
+    // UUID brut — référence Tenant du Groupe B/P2
     @Column(nullable = false, updatable = false)
     private UUID tenantId;
 

@@ -1,8 +1,6 @@
 package app.property.model;
 
 import app.booking.model.Booking;
-import app.post.model.PostLandlord;
-import app.post.model.PostTenant;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,7 +9,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "properties")
@@ -55,7 +55,26 @@ public class Property {
     @Builder.Default
     private Boolean isAvailable = true;
 
-    // UUID brut — pas de FK JPA vers User
+    @ElementCollection
+    @CollectionTable(
+            name = "property_pictures",
+            joinColumns = @JoinColumn(name = "property_id")
+    )
+    @Column(name = "picture_url", length = 500)
+    @Builder.Default
+    private List<String> pictures = new ArrayList<>();
+
+    // MVP : tags stockés comme strings simples
+    @ElementCollection // dit à JPA que c'est une collection de valeurs simples pas d'entitées
+    @CollectionTable(
+            name = "property_tags",
+            joinColumns = @JoinColumn(name = "property_id")
+    )
+    @Column(name = "tag", length = 50)
+    @Builder.Default
+    private List<String> tags = new ArrayList<>();
+
+    // UUID brut — pas de FK JPA vers User (Groupe B)
     @Column(nullable = false, updatable = false)
     private UUID landlordId;
 
@@ -75,20 +94,4 @@ public class Property {
     @Builder.Default
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(
-            name = "property_tags",
-            joinColumns = @JoinColumn(name = "property_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    @Builder.Default
-    @ToString.Exclude
-    private Set<Tag> tags = new HashSet<>();
-
-    @OneToOne(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
-    private PostLandlord landlordPost;
-
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PostTenant> tenantPosts = new ArrayList<>();
 }
