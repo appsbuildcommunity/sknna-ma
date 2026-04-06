@@ -1,5 +1,6 @@
 package app.post.model;
 
+import app.property.model.Property;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -19,11 +20,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PostLandlord extends Post {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(updatable = false, nullable = false)
-    private UUID id;
-
     @Column(nullable = false, updatable = false)
     private UUID landlordId;
 
@@ -42,4 +38,9 @@ public class PostLandlord extends Post {
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "property_id", nullable = false, unique = true)
+    @ToString.Exclude
+    private Property property;
 }

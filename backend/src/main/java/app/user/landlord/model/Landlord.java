@@ -1,5 +1,6 @@
-package app.user.model;
+package app.user.landlord.model;
 
+import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

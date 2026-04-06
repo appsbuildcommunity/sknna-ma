@@ -1,5 +1,6 @@
-package app.user.model;
+package app.user.tenant.model;
 
+import app.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 

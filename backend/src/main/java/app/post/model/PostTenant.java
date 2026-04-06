@@ -19,11 +19,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PostTenant extends Post {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(updatable = false, nullable = false)
-    private UUID id;
-
     // UUID brut vers Tenant — auteur
     @Column(nullable = false, updatable = false)
     private UUID tenantId;

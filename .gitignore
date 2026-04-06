@@ -57,6 +57,7 @@ dist/
 .env.*
 application-*.yml
 application-*.properties
+docker-compose.yml
 
 # =========================
 # Logs

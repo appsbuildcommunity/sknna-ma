@@ -23,7 +23,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Contract {
+public class BookingAgreement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -54,7 +54,7 @@ public class Contract {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default
-    private ContractStatus status = ContractStatus.active;
+    private AgreementStatus status = AgreementStatus.active;
 
     // Confirmation des deux parties dans l'app
     @Column(nullable = false)

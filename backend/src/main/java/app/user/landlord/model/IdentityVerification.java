@@ -1,4 +1,4 @@
-package app.user.model;
+package app.user.landlord.model;
 
 import jakarta.persistence.*;
 import lombok.*;
