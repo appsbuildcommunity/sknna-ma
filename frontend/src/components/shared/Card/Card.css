@@ -1,0 +1,47 @@
+/* Base = .card */
+.sk-card {
+  background:  #fff;
+  border:      1px solid var(--Gm);
+  box-shadow:  var(--s1);
+}
+
+/* — Radius — */
+.sk-card-md  { border-radius: var(--r); }
+.sk-card-lg  { border-radius: var(--rl); }   /* = .cardl */
+.sk-card-xl  { border-radius: var(--rxl); }
+
+/* — Shadow — */
+.sk-card-s1  { box-shadow: var(--s1); }
+.sk-card-s2  { box-shadow: var(--s2); }
+.sk-card-s3  { box-shadow: var(--s3); }
+
+/* — Padding — */
+.sk-card-p-none { padding: 0; }
+.sk-card-p-sm   { padding: 14px; }
+.sk-card-p-md   { padding: 22px 24px; }
+.sk-card-p-lg   { padding: 32px; }
+
+/* — Hoverable — */
+.sk-card-hoverable {
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  cursor: pointer;
+}
+.sk-card-hoverable:hover {
+  box-shadow: var(--s2);
+  transform:  translateY(-2px);
+}
+
+/* — Sub-components — */
+.sk-card-header {
+  padding-bottom: 16px;
+  border-bottom:  1px solid var(--Gm);
+  margin-bottom:  16px;
+}
+.sk-card-footer {
+  padding-top:  16px;
+  border-top:   1px solid var(--Gm);
+  margin-top:   16px;
+  display:      flex;
+  gap:          12px;
+  align-items:  center;
+}

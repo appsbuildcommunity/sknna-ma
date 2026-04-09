@@ -1,0 +1,61 @@
+.btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             8px;
+  font-family:     var(--font-body);
+  font-weight:     700;
+  border-radius:   9px;
+  cursor:          pointer;
+  transition:      background 150ms ease, border-color 150ms ease, opacity 150ms ease;
+  white-space:     nowrap;
+  border:          none;
+}
+
+/* — primary : .bp — orange CTA */
+.btn-primary {
+  background: var(--O);
+  color:      #fff;
+  border:     none;
+}
+.btn-primary:hover:not(:disabled) { background: var(--Od); }
+
+/* — secondary : .bs — white/navy outline */
+.btn-secondary {
+  background:   #fff;
+  color:        var(--N);
+  border:       2px solid var(--N);
+}
+.btn-secondary:hover:not(:disabled) { background: var(--G); }
+
+/* — ghost : .bghost — transparent white border (for dark bg) */
+.btn-ghost {
+  background:   transparent;
+  color:        #fff;
+  border:       1.5px solid rgba(255,255,255,.3);
+}
+.btn-ghost:hover:not(:disabled) { background: rgba(255,255,255,.08); }
+
+/* — danger — */
+.btn-danger {
+  background: var(--danger);
+  color:      #fff;
+  border:     none;
+}
+.btn-danger:hover:not(:disabled) { background: #c53030; }
+
+/* — Sizes — */
+.btn-sm { height: 32px; padding: 0 14px; font-size: 11px; border-radius: 7px; }
+.btn-md { height: 40px; padding: 0 20px; font-size: 13px; }
+.btn-lg { height: 48px; padding: 0 28px; font-size: 14px; }
+
+/* — States — */
+.btn:disabled  { opacity: .5; cursor: not-allowed; }
+.btn-full      { width: 100%; }
+
+.btn:focus-visible {
+  outline:        2px solid var(--O);
+  outline-offset: 2px;
+}
+
+.btn-icon { display: inline-flex; align-items: center; font-size: 1em; }

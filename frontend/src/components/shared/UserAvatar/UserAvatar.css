@@ -1,0 +1,55 @@
+/* Base = .avt from mockup */
+.sk-avatar {
+  border-radius:   50%;
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  font-family:     var(--font-body);
+  font-weight:     700;
+  flex-shrink:     0;
+  overflow:        hidden;
+  user-select:     none;
+  border:          2px solid rgba(255,255,255,.3);
+}
+
+/* — Sizes — */
+.sk-avatar-xs { width: 24px;  height: 24px;  font-size: 9px;  }
+.sk-avatar-sm { width: 32px;  height: 32px;  font-size: 11px; }
+.sk-avatar-md { width: 36px;  height: 36px;  font-size: 13px; border-width: 2px; }
+.sk-avatar-lg { width: 48px;  height: 48px;  font-size: 16px; border-width: 2px; }
+.sk-avatar-xl { width: 64px;  height: 64px;  font-size: 22px; border-width: 3px; }
+
+/* — Deterministic background colors (based on name hash) — */
+.sk-avatar-c0 { background: var(--O);  color: #fff;      border-color: rgba(255,255,255,.3); }
+.sk-avatar-c1 { background: var(--N);  color: #fff;      border-color: rgba(255,255,255,.3); }
+.sk-avatar-c2 { background: var(--GR); color: #fff;      border-color: rgba(255,255,255,.3); }
+.sk-avatar-c3 { background: #7c3aed;   color: #fff;      border-color: rgba(255,255,255,.3); }
+.sk-avatar-c4 { background: #0369a1;   color: #fff;      border-color: rgba(255,255,255,.3); }
+
+/* On light bg (no border needed) */
+.sk-avatar-light { border-color: var(--Gm); }
+
+.sk-avatar img {
+  width:      100%;
+  height:     100%;
+  object-fit: cover;
+  display:    block;
+}
+
+/* — With role variant — */
+.sk-avatar-with-role {
+  display:     inline-flex;
+  align-items: center;
+  gap:         10px;
+}
+.sk-avatar-info        { display: flex; flex-direction: column; gap: 1px; }
+.sk-avatar-name        { font-size: 14px; font-weight: 600; color: var(--T); }
+.sk-avatar-role        { font-size: 11px; color: var(--Tl); }
+
+/* — On dark background (inside navbar) — */
+.sk-avatar-dark .sk-avatar-name { color: rgba(255,255,255,.85); }
+.sk-avatar-dark .sk-avatar-role { color: rgba(255,255,255,.45); }
+
+.sk-avatar-clickable { cursor: pointer; transition: opacity 150ms ease; }
+.sk-avatar-clickable:hover { opacity: .85; }
+.sk-avatar-clickable:focus-visible { outline: 2px solid var(--O); outline-offset: 2px; }
