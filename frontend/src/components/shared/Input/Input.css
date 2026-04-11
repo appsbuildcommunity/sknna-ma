@@ -1,0 +1,67 @@
+/* Wrapper = .fg */
+.sk-field {
+  display:        flex;
+  flex-direction: column;
+  gap:            6px;
+}
+.sk-field-full { width: 100%; }
+
+/* Label = .fg label */
+.sk-label {
+  display:        block;
+  font-size:      11px;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color:          var(--Tm);
+}
+.sk-required { color: var(--O); margin-left: 2px; }
+
+/* Input wrapper (for icons) */
+.sk-input-wrap { position: relative; display: flex; align-items: center; }
+
+/* Input = .fi */
+.sk-input {
+  width:         100%;
+  padding:       12px 14px;
+  border:        1.5px solid var(--Gm);
+  border-radius: 9px;
+  font-size:     14px;
+  font-family:   var(--font-body);
+  color:         var(--T);
+  background:    #fff;
+  outline:       none;
+  transition:    border-color 150ms ease, box-shadow 150ms ease;
+}
+.sk-input::placeholder { color: var(--Tl); }
+.sk-input:hover:not(:disabled):not(:focus) { border-color: var(--Gd); }
+.sk-input:focus {
+  border-color: var(--O);
+  box-shadow:   0 0 0 3px rgba(232,131,58,.15);
+}
+.sk-input:disabled {
+  background: var(--G);
+  color:      var(--Tl);
+  cursor:     not-allowed;
+}
+.sk-input-error { border-color: var(--danger) !important; }
+.sk-input-error:focus { box-shadow: 0 0 0 3px rgba(229,62,62,.15); }
+
+.sk-input-has-left  { padding-left:  40px; }
+.sk-input-has-right { padding-right: 40px; }
+
+.sk-icon {
+  position:       absolute;
+  top:            50%;
+  transform:      translateY(-50%);
+  color:          var(--Tl);
+  display:        flex;
+  align-items:    center;
+  pointer-events: none;
+  font-size:      16px;
+}
+.sk-icon-left  { left:  13px; }
+.sk-icon-right { right: 13px; }
+
+.sk-error { font-size: 12px; color: var(--danger); }
+.sk-hint  { font-size: 12px; color: var(--Tl); }

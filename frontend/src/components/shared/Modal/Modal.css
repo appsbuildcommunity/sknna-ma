@@ -1,0 +1,81 @@
+@keyframes sk-fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sk-slide-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+.sk-overlay {
+  position:        fixed;
+  inset:           0;
+  background:      rgba(17,24,39,.5);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  padding:         20px;
+  z-index:         1000;
+  animation:       sk-fade-in 150ms ease;
+}
+
+.sk-dialog {
+  background:     #fff;
+  border-radius:  var(--rl);
+  box-shadow:     var(--s3);
+  border:         1px solid var(--Gm);
+  display:        flex;
+  flex-direction: column;
+  max-height:     calc(100vh - 40px);
+  width:          100%;
+  outline:        none;
+  animation:      sk-slide-up 180ms ease;
+}
+.sk-dialog-sm { max-width: 420px; }
+.sk-dialog-md { max-width: 560px; }
+.sk-dialog-lg { max-width: 720px; }
+
+.sk-dialog-header {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         20px 24px 18px;
+  border-bottom:   1px solid var(--Gm);
+  flex-shrink:     0;
+}
+.sk-dialog-title {
+  font-family: var(--font-display);
+  font-size:   20px;
+  font-weight: 700;
+  color:       var(--N);
+  margin:      0;
+}
+
+.sk-dialog-close {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           32px;
+  height:          32px;
+  border:          none;
+  border-radius:   8px;
+  background:      transparent;
+  color:           var(--Tl);
+  cursor:          pointer;
+  transition:      background 150ms ease, color 150ms ease;
+  flex-shrink:     0;
+}
+.sk-dialog-close:hover { background: var(--G); color: var(--T); }
+
+.sk-dialog-body {
+  padding:     24px;
+  overflow-y:  auto;
+  flex:        1;
+  font-size:   14px;
+  color:       var(--Tm);
+  line-height: 1.6;
+}
+
+.sk-dialog-footer {
+  display:         flex;
+  align-items:     center;
+  justify-content: flex-end;
+  gap:             12px;
+  padding:         16px 24px;
+  border-top:      1px solid var(--Gm);
+  flex-shrink:     0;
+}

@@ -1,0 +1,23 @@
+@keyframes sk-spin { to { transform: rotate(360deg); } }
+
+.sk-loader {
+  display:       inline-block;
+  border-radius: 50%;
+  border-style:  solid;
+  border-color:  transparent;
+  animation:     sk-spin 0.65s linear infinite;
+  flex-shrink:   0;
+}
+.sk-loader-sm { width: 14px; height: 14px; border-width: 2px; }
+.sk-loader-md { width: 20px; height: 20px; border-width: 2px; }
+.sk-loader-lg { width: 32px; height: 32px; border-width: 3px; }
+
+.sk-loader-primary { border-top-color: var(--O); }
+.sk-loader-white   { border-top-color: #fff; }
+.sk-loader-gray    { border-top-color: var(--Gd); }
+
+.sk-sr {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}

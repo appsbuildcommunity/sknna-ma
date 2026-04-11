@@ -1,0 +1,130 @@
+/* ─── BAR variant — hero search bar from mockup ───── */
+.sk-filterbar-bar {
+  display:       flex;
+  background:    #fff;
+  border-radius: 14px;
+  overflow:      hidden;
+  box-shadow:    0 12px 40px rgba(0,0,0,.18);
+  max-width:     760px;
+  width:         100%;
+}
+
+.sk-filterbar-bar-field {
+  flex:        1;
+  padding:     14px 20px;
+  border-right: 1px solid var(--Gm);
+  display:     flex;
+  flex-direction: column;
+  gap:         3px;
+}
+.sk-filterbar-bar-field:last-of-type { border-right: none; }
+
+.sk-filterbar-bar-label {
+  font-size:      10px;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color:          var(--Tl);
+}
+
+.sk-filterbar-bar-select,
+.sk-filterbar-bar-input {
+  border:      none;
+  outline:     none;
+  font-size:   14px;
+  color:       var(--T);
+  font-family: var(--font-body);
+  background:  transparent;
+  width:       100%;
+  padding:     0;
+  cursor:      pointer;
+}
+
+.sk-filterbar-bar-btn {
+  background:  var(--O);
+  border:      none;
+  color:       #fff;
+  padding:     0 28px;
+  font-size:   14px;
+  font-weight: 700;
+  cursor:      pointer;
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  flex-shrink: 0;
+  transition:  background 150ms ease;
+}
+.sk-filterbar-bar-btn:hover { background: var(--Od); }
+
+/* ─── SIDEBAR variant — filter panel from search page ─── */
+.sk-filterbar-sidebar { display: flex; flex-direction: column; gap: 0; }
+
+.sk-filterbar-section-title {
+  font-size:      11px;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color:          var(--Tm);
+  margin:         20px 0 10px;
+}
+.sk-filterbar-section-title:first-child { margin-top: 0; }
+
+/* Type chips row — matches filter chips bar from mockup */
+.sk-filterbar-chips {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       8px;
+  margin-bottom: 4px;
+}
+.sk-filterbar-chip {
+  padding:       7px 14px;
+  border-radius: 20px;
+  border:        1.5px solid var(--Gm);
+  color:         var(--Tm);
+  font-size:     12px;
+  font-weight:   500;
+  cursor:        pointer;
+  background:    #fff;
+  font-family:   var(--font-body);
+  transition:    background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+.sk-filterbar-chip:hover            { border-color: var(--N); color: var(--N); }
+.sk-filterbar-chip-active-navy      { background: var(--N);  border-color: var(--N);  color: #fff; font-weight: 600; }
+.sk-filterbar-chip-active-orange    { background: var(--O);  border-color: var(--O);  color: #fff; font-weight: 600; }
+
+/* Budget range row */
+.sk-filterbar-budget-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.sk-filterbar-budget-sep {
+  color:       var(--Tl);
+  font-size:   14px;
+  font-weight: 500;
+  text-align:  center;
+}
+
+/* Sort row */
+.sk-filterbar-sort {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+  margin-top:  4px;
+}
+.sk-filterbar-sort-label {
+  font-size:   13px;
+  color:       var(--Tm);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Actions */
+.sk-filterbar-actions {
+  display:    flex;
+  gap:        10px;
+  margin-top: 20px;
+}

@@ -1,0 +1,40 @@
+.sk-select-field { display: flex; flex-direction: column; gap: 6px; }
+.sk-select-full  { width: 100%; }
+
+.sk-select-wrap  { position: relative; }
+
+/* Same base as .fi */
+.sk-select {
+  width:          100%;
+  padding:        12px 40px 12px 14px;
+  border:         1.5px solid var(--Gm);
+  border-radius:  9px;
+  font-size:      14px;
+  font-family:    var(--font-body);
+  color:          var(--T);
+  background:     #fff;
+  outline:        none;
+  appearance:     none;
+  cursor:         pointer;
+  transition:     border-color 150ms ease, box-shadow 150ms ease;
+}
+.sk-select:hover:not(:disabled) { border-color: var(--Gd); }
+.sk-select:focus {
+  border-color: var(--O);
+  box-shadow:   0 0 0 3px rgba(232,131,58,.15);
+}
+.sk-select:disabled { background: var(--G); color: var(--Tl); cursor: not-allowed; }
+.sk-select-error    { border-color: var(--danger) !important; }
+
+.sk-chevron {
+  position:       absolute;
+  right:          13px;
+  top:            50%;
+  transform:      translateY(-50%);
+  color:          var(--Tl);
+  pointer-events: none;
+  display:        flex;
+}
+
+.sk-select-error-msg { font-size: 12px; color: var(--danger); }
+.sk-select-hint      { font-size: 12px; color: var(--Tl); }
