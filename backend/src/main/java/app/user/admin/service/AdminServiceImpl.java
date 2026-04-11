@@ -41,6 +41,7 @@ public class AdminServiceImpl implements AdminService {
     public List<AdminUserResponseDTO> getAll() {
         return adminRepository.findAll()
                 .stream()
+                .filter(admin -> admin.getRole() == app.user.model.Role.admin)
                 .map(adminMapper::toResponseDto)
                 .toList();
     }
