@@ -28,6 +28,5 @@ public class AdminUserRequestDto {
 
     private boolean isActive;
     private boolean verified;
-
-    // Getters and Setters
+    
 }

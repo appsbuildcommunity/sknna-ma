@@ -13,6 +13,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - seknna-network
+    # Added health check to ensure PG is ready for connections
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U sknna_user -d sknna" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   # 2. Backend
   backend:
@@ -27,7 +33,8 @@ services:
       - SPRING_DATASOURCE_USERNAME=${DB_USER}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
     depends_on:
-      - db
+      db:
+        condition: service_healthy # Wait for healthcheck to pass
     networks:
       - seknna-network
 
@@ -53,21 +60,21 @@ services:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}   # or any password you like
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "5050:80"   # host port 5050 → container 80
+      - "5050:80"
     depends_on:
       - db
     networks:
       - seknna-network
-    restart: unless-stopped   # optional: always restart if crashes
+    restart: unless-stopped
 
 # Networks
 networks:
   seknna-network:
     driver: bridge
     driver_opts:
-      com.docker.network.driver.mtu: 1450
+      com.docker.network.driver.mtu: 1450 # MTU preserved as requested
 
 # Volumes
 volumes:
