@@ -26,7 +26,6 @@ public class LandlordRequestDto {
     @NotNull(message = "Role is required")
     private Role role;
 
-    @Size(max = 200)
     private String bio;
 
     private boolean isActive;

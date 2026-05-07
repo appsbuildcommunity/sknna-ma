@@ -22,6 +22,6 @@ public class AdminUpdateUserDto {
 
     private Role role;             // optional
 
-    private Boolean active;      // Boolean (not boolean) so null = untouched
-    private Boolean verified;      // same here    
+    private Boolean isActive;      // Boolean (not boolean) so null = untouched
+    private Boolean verified;      // same here
 }
