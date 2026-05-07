@@ -30,6 +30,6 @@ public class TenantRequestDto {
     private TenantType profileType;
     private String bio;
 
-    private boolean isActive;
+    private boolean active;
     private boolean verified;
 }

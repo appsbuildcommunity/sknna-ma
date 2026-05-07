@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import app.user.tenant.dto.TenantUpdateDto;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -39,6 +41,13 @@ public class TenantController {
             @PathVariable UUID id,
             @Valid @RequestBody TenantRequestDto request) {
         return ResponseEntity.ok(tenantService.update(id, request));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<TenantResponseDto> patch(
+            @PathVariable UUID id,
+            @Valid @RequestBody TenantUpdateDto request) {
+        return ResponseEntity.ok(tenantService.patch(id, request));
     }
 
     @DeleteMapping("/{id}")

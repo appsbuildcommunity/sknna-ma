@@ -16,7 +16,7 @@ public class TenantResponseDto {
     Role role;
     TenantType profileType;
     String bio;
-    boolean isActive;
+    boolean active;
     boolean verified;
     LocalDate createdAt;
     LocalDate updatedAt;

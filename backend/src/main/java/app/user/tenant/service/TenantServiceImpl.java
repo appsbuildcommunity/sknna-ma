@@ -10,6 +10,8 @@ import app.user.tenant.repository.TenantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import app.user.tenant.dto.TenantUpdateDto;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -70,6 +72,34 @@ public class TenantServiceImpl implements TenantService {
 
         return tenantMapper.toResponseDto(tenantRepository.save(tenant));
     }
+
+    @Override
+    public TenantResponseDto patch(UUID id, TenantUpdateDto request) {
+        Tenant tenant = findOrThrow(id);
+
+        if (request.getFullName() != null) tenant.setFullName(request.getFullName());
+
+        if (request.getEmail() != null && !request.getEmail().equals(tenant.getEmail())) {
+            if (tenantRepository.existsByEmail(request.getEmail())) {
+                throw new BusinessException("EMAIL_TAKEN", "Email is already in use");
+            }
+            tenant.setEmail(request.getEmail());
+        }
+
+        if (request.getPassword() != null && !request.getPassword().isBlank()) {
+            tenant.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+
+        if (request.getPhoneNumber() != null)  tenant.setPhone(request.getPhoneNumber());
+        if (request.getRole() != null)         tenant.setRole(request.getRole());
+        if (request.getProfileType() != null)  tenant.setProfileType(request.getProfileType());
+        if (request.getBio() != null)          tenant.setBio(request.getBio());
+        if (request.getActive() != null)       tenant.setIsActive(request.getActive());
+        if (request.getVerified() != null)     tenant.setIsVerified(request.getVerified());
+
+        return tenantMapper.toResponseDto(tenantRepository.save(tenant));
+    }
+
 
     @Override
     public void delete(UUID id) {
