@@ -13,7 +13,7 @@ public class AdminUserResponseDTO {
     String email;
     String phoneNumber;
     Role role;
-    boolean isActive;
+    boolean active;
     boolean verified;
     LocalDate createdAt;
     LocalDate updatedAt;

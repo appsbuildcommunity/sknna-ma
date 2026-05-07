@@ -10,10 +10,12 @@ public interface AdminMapper {
 
     @Mapping(source = "phone", target = "phoneNumber")
     @Mapping(source = "isVerified", target = "verified")
+    @Mapping(source = "isActive", target = "active")
     AdminUserResponseDTO toResponseDto(Admin admin);
 
     @Mapping(source = "phoneNumber", target = "phone")
     @Mapping(source = "verified", target = "isVerified")
+    @Mapping(source = "active", target = "isActive")
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)

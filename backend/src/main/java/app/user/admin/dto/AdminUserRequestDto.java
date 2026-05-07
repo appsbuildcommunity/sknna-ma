@@ -26,7 +26,7 @@ public class AdminUserRequestDto {
     @NotNull(message = "Role is required")
     private Role role;
 
-    private boolean isActive;
+    private boolean active;
     private boolean verified;
     
 }
