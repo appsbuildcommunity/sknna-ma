@@ -11,7 +11,6 @@ public interface AdminService {
     AdminUserResponseDTO getOne(UUID id);
     List<AdminUserResponseDTO> getAll();
     AdminUserResponseDTO update(UUID id, AdminUserRequestDto request);
-    AdminUserResponseDTO patch(UUID id, AdminUpdateUserDto request);
     void delete(UUID id);
     AdminUserResponseDTO activate(UUID id);
     AdminUserResponseDTO deactivate(UUID id);

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/admins")
+@RequestMapping("/api/admin/users")
 @RequiredArgsConstructor
 public class AdminController {
 
@@ -40,13 +40,6 @@ public class AdminController {
             @PathVariable UUID id,
             @Valid @RequestBody AdminUserRequestDto request) {
         return ResponseEntity.ok(adminService.update(id, request));
-    }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<AdminUserResponseDTO> patch(
-            @PathVariable UUID id,
-            @Valid @RequestBody AdminUpdateUserDto request) {
-        return ResponseEntity.ok(adminService.patch(id, request));
     }
 
     @DeleteMapping("/{id}")
