@@ -42,11 +42,12 @@ public class User {
 
     @Column(nullable = false)
     @Builder.Default
-    private Boolean isVerified = false;
+    private Boolean verified = false;
 
     @Column(nullable = false)
     @Builder.Default
-    private Boolean isActive = true;
+    private Boolean active = true;
+
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

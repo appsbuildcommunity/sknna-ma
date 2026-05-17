@@ -60,8 +60,8 @@ public class LandlordServiceImpl implements LandlordService {
         landlord.setPhone(request.getPhoneNumber());
         landlord.setRole(request.getRole());
         landlord.setBio(request.getBio());
-        landlord.setIsActive(request.isActive());
-        landlord.setIsVerified(request.isVerified());
+        landlord.setActive(request.isActive());       
+        landlord.setVerified(request.isVerified());   
 
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             landlord.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -81,14 +81,14 @@ public class LandlordServiceImpl implements LandlordService {
     @Override
     public LandlordResponseDto activate(UUID id) {
         Landlord landlord = findOrThrow(id);
-        landlord.setIsActive(true);
+        landlord.setActive(true);
         return landlordMapper.toResponseDto(landlordRepository.save(landlord));
     }
 
     @Override
     public LandlordResponseDto deactivate(UUID id) {
         Landlord landlord = findOrThrow(id);
-        landlord.setIsActive(false);
+        landlord.setActive(false);
         return landlordMapper.toResponseDto(landlordRepository.save(landlord));
     }
 

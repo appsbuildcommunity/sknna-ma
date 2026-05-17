@@ -63,8 +63,8 @@ public class TenantServiceImpl implements TenantService {
         tenant.setRole(request.getRole());
         tenant.setProfileType(request.getProfileType());
         tenant.setBio(request.getBio());
-        tenant.setIsActive(request.isActive());
-        tenant.setIsVerified(request.isVerified());
+        tenant.setActive(request.isActive());         // was setIsActive
+        tenant.setVerified(request.isVerified());     // was setIsVerified
 
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             tenant.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -94,8 +94,8 @@ public class TenantServiceImpl implements TenantService {
         if (request.getRole() != null)         tenant.setRole(request.getRole());
         if (request.getProfileType() != null)  tenant.setProfileType(request.getProfileType());
         if (request.getBio() != null)          tenant.setBio(request.getBio());
-        if (request.getActive() != null)       tenant.setIsActive(request.getActive());
-        if (request.getVerified() != null)     tenant.setIsVerified(request.getVerified());
+        if (request.getActive() != null)   tenant.setActive(request.getActive());    // was setIsActive
+        if (request.getVerified() != null) tenant.setVerified(request.getVerified()); // was setIsVerified
 
         return tenantMapper.toResponseDto(tenantRepository.save(tenant));
     }
@@ -112,14 +112,14 @@ public class TenantServiceImpl implements TenantService {
     @Override
     public TenantResponseDto activate(UUID id) {
         Tenant tenant = findOrThrow(id);
-        tenant.setIsActive(true);
+        tenant.setActive(true);
         return tenantMapper.toResponseDto(tenantRepository.save(tenant));
     }
 
     @Override
     public TenantResponseDto deactivate(UUID id) {
         Tenant tenant = findOrThrow(id);
-        tenant.setIsActive(false);
+        tenant.setActive(false);
         return tenantMapper.toResponseDto(tenantRepository.save(tenant));
     }
 
