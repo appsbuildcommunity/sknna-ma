@@ -8,12 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import app.user.landlord.dto.LandlordUpdateDto;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/admin/landlords")
+@RequestMapping("/api/landlords")
 @RequiredArgsConstructor
 public class LandlordController {
 
@@ -39,6 +40,13 @@ public class LandlordController {
             @PathVariable UUID id,
             @Valid @RequestBody LandlordRequestDto request) {
         return ResponseEntity.ok(landlordService.update(id, request));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<LandlordResponseDto> patch(
+            @PathVariable UUID id,
+            @Valid @RequestBody LandlordUpdateDto request) {
+        return ResponseEntity.ok(landlordService.patch(id, request));
     }
 
     @DeleteMapping("/{id}")

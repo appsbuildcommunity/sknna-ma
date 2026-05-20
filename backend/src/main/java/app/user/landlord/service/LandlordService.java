@@ -2,6 +2,7 @@ package app.user.landlord.service;
 
 import app.user.landlord.dto.LandlordRequestDto;
 import app.user.landlord.dto.LandlordResponseDto;
+import app.user.landlord.dto.LandlordUpdateDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,6 +12,7 @@ public interface LandlordService {
     LandlordResponseDto getOne(UUID id);
     List<LandlordResponseDto> getAll();
     LandlordResponseDto update(UUID id, LandlordRequestDto request);
+    LandlordResponseDto patch(UUID id, LandlordUpdateDto request);
     void delete(UUID id);
     LandlordResponseDto activate(UUID id);
     LandlordResponseDto deactivate(UUID id);

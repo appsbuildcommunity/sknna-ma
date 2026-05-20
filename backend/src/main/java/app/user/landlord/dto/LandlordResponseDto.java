@@ -14,7 +14,7 @@ public class LandlordResponseDto {
     String phoneNumber;
     Role role;
     String bio;
-    boolean isActive;
+    boolean active;
     boolean verified;
     LocalDate createdAt;
     LocalDate updatedAt;
