@@ -1,8 +1,8 @@
 package app.user.service;
 
 import app.core.config.JwtService;
-import app.user.dto.LoginRequest;
-import app.user.dto.LoginResponse;
+import app.user.tenant.dto.LoginRequest;
+import app.user.tenant.dto.LoginResponse;
 import app.user.dto.SignupRequest;
 import app.user.model.User;
 import app.user.repository.UserRepository;

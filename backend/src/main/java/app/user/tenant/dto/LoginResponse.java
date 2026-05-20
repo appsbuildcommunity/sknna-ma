@@ -1,4 +1,4 @@
-package app.user.dto;
+package app.user.tenant.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

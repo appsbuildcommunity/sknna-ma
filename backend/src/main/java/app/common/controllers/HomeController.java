@@ -1,7 +1,8 @@
 package app.common.controllers;
 
-import app.user.dto.LoginRequest;
-import app.user.dto.LoginResponse;
+import app.user.tenant.dto.LoginRequest;
+import app.user.tenant.dto.LoginResponse;
+import app.user.model.Role;
 import app.user.service.AuthService;
 import app.user.tenant.dto.TenantRequestDto;
 import app.user.tenant.dto.TenantResponseDto;
@@ -32,6 +33,7 @@ public class HomeController {
 
     @PostMapping("/signup")
     public ResponseEntity<TenantResponseDto> signup(@Valid @RequestBody TenantRequestDto request) {
+        request.setRole(Role.tenant); // force role server-side
         return ResponseEntity.status(HttpStatus.CREATED).body(tenantService.create(request));
     }
 
