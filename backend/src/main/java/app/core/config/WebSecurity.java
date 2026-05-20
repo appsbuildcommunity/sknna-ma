@@ -33,11 +33,10 @@ public class WebSecurity {
                         .requestMatchers("/api/admins/**").hasRole("admin")
                         .requestMatchers("/api/tenants/**").hasRole("tenant")
                         .anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .userDetailsService(userDetailsService)
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(rateLimitFilter, JwtFilter.class);
+                .addFilterAfter(rateLimitFilter, JwtFilter.class);
 
         return http.build();
     }

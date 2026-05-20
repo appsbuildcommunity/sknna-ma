@@ -34,14 +34,14 @@ public class RateLimitFilter extends OncePerRequestFilter {
     // 5 login attempts per minute per IP
     private Bucket newLoginBucket() {
         return Bucket.builder()
-                .addLimit(Bandwidth.classic(5, Refill.greedy(5, Duration.ofMinutes(1))))
+                .addLimit(Bandwidth.classic(2, Refill.greedy(2, Duration.ofMinutes(1))))
                 .build();
     }
 
     // 60 requests per minute per authenticated user
     private Bucket newUserBucket() {
         return Bucket.builder()
-                .addLimit(Bandwidth.classic(60, Refill.greedy(60, Duration.ofMinutes(1))))
+                .addLimit(Bandwidth.classic(55, Refill.greedy(55, Duration.ofMinutes(1))))
                 .build();
     }
 
