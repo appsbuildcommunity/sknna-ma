@@ -14,11 +14,15 @@ public class SignupRequest {
     @Size(max = 100)
     private String fullName;
 
-    @Email @NotBlank
+    @Email
+    @NotBlank
     private String email;
 
     @NotBlank
-    @Size(min = 4)
+    @Size(min = 8, message = "Password must be at least 8 characters")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "Password must contain at least one digit, one lowercase, "
+            +
+            "one uppercase, and one special character")
     private String password;
 
     private String phoneNumber;

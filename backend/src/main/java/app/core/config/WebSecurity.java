@@ -22,21 +22,22 @@ public class WebSecurity {
 
     private final MyUserDetailsService userDetailsService;
     private final JwtFilter jwtFilter;
+    private final RateLimitFilter rateLimitFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/signup", "/login", "/logout", "/").permitAll()
-                .requestMatchers("/api/admins/**").hasRole("admin")
-                .requestMatchers("/api/tenants/**").hasRole("tenant")
-                .anyRequest().authenticated()
-            )
-            .userDetailsService(userDetailsService)
-            .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/signup", "/login", "/logout", "/").permitAll()
+                        .requestMatchers("/api/admins/**").hasRole("admin")
+                        .requestMatchers("/api/tenants/**").hasRole("tenant")
+                        .anyRequest().authenticated())
+                .userDetailsService(userDetailsService)
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(rateLimitFilter, JwtFilter.class);
 
         return http.build();
     }

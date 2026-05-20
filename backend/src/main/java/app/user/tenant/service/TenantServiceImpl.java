@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import app.user.tenant.dto.TenantUpdateDto;
 
-
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +30,8 @@ public class TenantServiceImpl implements TenantService {
         }
         Tenant tenant = tenantMapper.toEntity(request);
         tenant.setPassword(passwordEncoder.encode(request.getPassword()));
+        tenant.setActive(true); // always set server-side
+        tenant.setVerified(false); // always set server-side
         return tenantMapper.toResponseDto(tenantRepository.save(tenant));
     }
 
@@ -63,8 +64,8 @@ public class TenantServiceImpl implements TenantService {
         tenant.setRole(request.getRole());
         tenant.setProfileType(request.getProfileType());
         tenant.setBio(request.getBio());
-        tenant.setActive(request.isActive());         // was setIsActive
-        tenant.setVerified(request.isVerified());     // was setIsVerified
+        tenant.setActive(request.isActive()); // was setIsActive
+        tenant.setVerified(request.isVerified()); // was setIsVerified
 
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             tenant.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -77,7 +78,8 @@ public class TenantServiceImpl implements TenantService {
     public TenantResponseDto patch(UUID id, TenantUpdateDto request) {
         Tenant tenant = findOrThrow(id);
 
-        if (request.getFullName() != null) tenant.setFullName(request.getFullName());
+        if (request.getFullName() != null)
+            tenant.setFullName(request.getFullName());
 
         if (request.getEmail() != null && !request.getEmail().equals(tenant.getEmail())) {
             if (tenantRepository.existsByEmail(request.getEmail())) {
@@ -90,16 +92,21 @@ public class TenantServiceImpl implements TenantService {
             tenant.setPassword(passwordEncoder.encode(request.getPassword()));
         }
 
-        if (request.getPhoneNumber() != null)  tenant.setPhone(request.getPhoneNumber());
-        if (request.getRole() != null)         tenant.setRole(request.getRole());
-        if (request.getProfileType() != null)  tenant.setProfileType(request.getProfileType());
-        if (request.getBio() != null)          tenant.setBio(request.getBio());
-        if (request.getActive() != null)   tenant.setActive(request.getActive());    // was setIsActive
-        if (request.getVerified() != null) tenant.setVerified(request.getVerified()); // was setIsVerified
+        if (request.getPhoneNumber() != null)
+            tenant.setPhone(request.getPhoneNumber());
+        if (request.getRole() != null)
+            tenant.setRole(request.getRole());
+        if (request.getProfileType() != null)
+            tenant.setProfileType(request.getProfileType());
+        if (request.getBio() != null)
+            tenant.setBio(request.getBio());
+        if (request.getActive() != null)
+            tenant.setActive(request.getActive()); // was setIsActive
+        if (request.getVerified() != null)
+            tenant.setVerified(request.getVerified()); // was setIsVerified
 
         return tenantMapper.toResponseDto(tenantRepository.save(tenant));
     }
-
 
     @Override
     public void delete(UUID id) {

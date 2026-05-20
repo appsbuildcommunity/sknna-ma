@@ -16,8 +16,11 @@ public class TenantRequestDto {
     @Email(message = "Invalid email format")
     private String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 4, message = "Password must be at least 4 characters long")
+    @NotBlank
+    @Size(min = 8, message = "Password must be at least 8 characters")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "Password must contain at least one digit, one lowercase, "
+            +
+            "one uppercase, and one special character")
     private String password;
 
     @NotBlank(message = "Phone number is required")
