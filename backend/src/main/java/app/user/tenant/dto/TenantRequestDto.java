@@ -1,11 +1,12 @@
-package app.user.admin.dto;
+package app.user.tenant.dto;
 
 import app.user.model.Role;
+import app.user.tenant.model.TenantType;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class AdminUserRequestDto {
+public class TenantRequestDto {
 
     @NotBlank(message = "Full name is required")
     @Size(max = 100, message = "Full name must be between 3 and 100 characters")
@@ -26,7 +27,9 @@ public class AdminUserRequestDto {
     @NotNull(message = "Role is required")
     private Role role;
 
+    private TenantType profileType;
+    private String bio;
+
     private boolean active;
     private boolean verified;
-    
 }

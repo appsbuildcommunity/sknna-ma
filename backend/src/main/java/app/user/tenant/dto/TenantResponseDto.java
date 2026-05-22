@@ -1,18 +1,21 @@
-package app.user.admin.dto;
+package app.user.tenant.dto;
+
+import app.user.model.Role;
+import app.user.tenant.model.TenantType;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-import app.user.model.Role;
-import lombok.Data;
-
 @Data
-public class AdminUserResponseDTO {
+public class TenantResponseDto {
     UUID id;
     String fullName;
     String email;
     String phoneNumber;
     Role role;
+    TenantType profileType;
+    String bio;
     boolean active;
     boolean verified;
     LocalDate createdAt;
