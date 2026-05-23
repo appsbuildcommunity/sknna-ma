@@ -60,8 +60,8 @@ public class AdminServiceImpl implements AdminService {
         admin.setEmail(request.getEmail());
         admin.setPhone(request.getPhoneNumber());
         admin.setRole(request.getRole());
-        admin.setIsActive(request.isActive());
-        admin.setIsVerified(request.isVerified());
+        admin.setActive(request.isActive());          // was setIsActive
+        admin.setVerified(request.isVerified());      // was setIsVerified
 
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             admin.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -88,9 +88,9 @@ public class AdminServiceImpl implements AdminService {
         }
 
         if (request.getPhoneNumber() != null) admin.setPhone(request.getPhoneNumber());
-        if (request.getRole() != null)        admin.setRole(request.getRole());
-        if (request.getActive() != null)      admin.setIsActive(request.getActive());
-        if (request.getVerified() != null)    admin.setIsVerified(request.getVerified());
+        if (request.getActive() != null)   admin.setActive(request.getActive());    
+        if (request.getVerified() != null) admin.setVerified(request.getVerified()); 
+        if (request.getVerified() != null)    admin.setVerified(request.getVerified());
 
         return adminMapper.toResponseDto(adminRepository.save(admin));
     }
@@ -106,14 +106,14 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public AdminUserResponseDTO activate(UUID id) {
         Admin admin = findOrThrow(id);
-        admin.setIsActive(true);
+        admin.setActive(true);
         return adminMapper.toResponseDto(adminRepository.save(admin));
     }
 
     @Override
     public AdminUserResponseDTO deactivate(UUID id) {
         Admin admin = findOrThrow(id);
-        admin.setIsActive(false);
+        admin.setActive(false);                       // was setIsActive
         return adminMapper.toResponseDto(adminRepository.save(admin));
     }
 
