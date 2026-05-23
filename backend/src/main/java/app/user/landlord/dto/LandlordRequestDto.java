@@ -29,6 +29,6 @@ public class LandlordRequestDto {
     @Size(max = 200)
     private String bio;
 
-    private boolean isActive;
+    private boolean active;
     private boolean verified;
 }
