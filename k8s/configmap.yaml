@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sknna-config
+  namespace: default
+data:
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres-service:5432/sknna"
+  SPRING_DATASOURCE_USERNAME: "sknna_user"
+  POSTGRES_DB: "sknna"
+  POSTGRES_USER: "sknna_user"
