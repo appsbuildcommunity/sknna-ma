@@ -10,6 +10,8 @@ import app.user.landlord.repository.LandlordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import app.user.landlord.dto.LandlordUpdateDto;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -69,6 +71,33 @@ public class LandlordServiceImpl implements LandlordService {
 
         return landlordMapper.toResponseDto(landlordRepository.save(landlord));
     }
+
+    @Override
+    public LandlordResponseDto patch(UUID id, LandlordUpdateDto request) {
+        Landlord landlord = findOrThrow(id);
+
+        if (request.getFullName() != null) landlord.setFullName(request.getFullName());
+
+        if (request.getEmail() != null && !request.getEmail().equals(landlord.getEmail())) {
+            if (landlordRepository.existsByEmail(request.getEmail())) {
+                throw new BusinessException("EMAIL_TAKEN", "Email is already in use");
+            }
+            landlord.setEmail(request.getEmail());
+        }
+
+        if (request.getPassword() != null && !request.getPassword().isBlank()) {
+            landlord.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+
+        if (request.getPhoneNumber() != null) landlord.setPhone(request.getPhoneNumber());
+        if (request.getRole() != null)        landlord.setRole(request.getRole());
+        if (request.getBio() != null)         landlord.setBio(request.getBio());
+        if (request.getActive() != null)      landlord.setIsActive(request.getActive());
+        if (request.getVerified() != null)    landlord.setIsVerified(request.getVerified());
+
+        return landlordMapper.toResponseDto(landlordRepository.save(landlord));
+    }
+
 
     @Override
     public void delete(UUID id) {
