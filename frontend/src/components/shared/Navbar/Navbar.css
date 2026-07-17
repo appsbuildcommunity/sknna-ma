@@ -1,0 +1,103 @@
+/* Matches .nav from mockup */
+.sk-nav {
+  background:      var(--N);
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         0 48px;
+  height:          68px;
+  position:        sticky;
+  top:             0;
+  z-index:         100;
+}
+
+/* .logo */
+.sk-nav-logo {
+  font-family:     var(--font-display);
+  display:         flex;
+  align-items:     baseline;
+  text-decoration: none;
+  gap:             0;
+}
+.sk-nav-logo-s { color: var(--C);  font-size: 22px; }
+.sk-nav-logo-m { color: var(--O);  font-size: 22px; }
+
+/* .nlinks */
+.sk-nav-links {
+  display:     flex;
+  gap:         28px;
+  list-style:  none;
+}
+.sk-nav-link {
+  color:           rgba(255,255,255,.6);
+  font-size:       14px;
+  font-weight:     500;
+  text-decoration: none;
+  transition:      color 150ms ease;
+}
+.sk-nav-link:hover,
+.sk-nav-link-active { color: #fff; }
+
+/* .nacts */
+.sk-nav-actions { display: flex; gap: 10px; align-items: center; }
+
+/* .bghost — matches exactly */
+.sk-nav-ghost {
+  background:   none;
+  border:       1.5px solid rgba(255,255,255,.3);
+  color:        #fff;
+  padding:      8px 18px;
+  border-radius: 8px;
+  font-size:    13px;
+  font-weight:  600;
+  cursor:       pointer;
+  font-family:  var(--font-body);
+  transition:   background 150ms ease;
+}
+.sk-nav-ghost:hover { background: rgba(255,255,255,.08); }
+
+/* .bcta — matches exactly */
+.sk-nav-cta {
+  background:    var(--O);
+  border:        none;
+  color:         #fff;
+  padding:       9px 20px;
+  border-radius: 8px;
+  font-size:     13px;
+  font-weight:   700;
+  cursor:        pointer;
+  font-family:   var(--font-body);
+  transition:    background 150ms ease;
+}
+.sk-nav-cta:hover { background: var(--Od); }
+
+/* .avt — authenticated user avatar */
+.sk-nav-avatar {
+  width:           36px;
+  height:          36px;
+  border-radius:   50%;
+  background:      var(--O);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  color:           #fff;
+  font-weight:     700;
+  font-size:       13px;
+  border:          2px solid rgba(255,255,255,.3);
+  cursor:          pointer;
+  flex-shrink:     0;
+  font-family:     var(--font-body);
+  transition:      border-color 150ms ease;
+}
+.sk-nav-avatar:hover { border-color: rgba(255,255,255,.6); }
+
+.sk-nav-user {
+  display:     flex;
+  align-items: center;
+  gap:         10px;
+}
+.sk-nav-user-name {
+  color:       rgba(255,255,255,.85);
+  font-size:   13px;
+  font-weight: 500;
+}

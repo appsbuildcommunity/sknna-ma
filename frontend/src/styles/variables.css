@@ -1,0 +1,51 @@
+/* ═══════════════════════════════════════════════
+   SEKNNA — Design Tokens
+   Source : maquettes Sknna.ma (Poppins + Playfair)
+   Importer dans main.tsx : import './styles/variables.css'
+   ═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* — Brand — */
+  --N:   #2D3A5F;   /* navy primary */
+  --Nd:  #1a2340;   /* navy dark    */
+  --Nl:  #3d5080;   /* navy light   */
+  --O:   #E8833A;   /* orange CTA   */
+  --Ol:  #f09a5a;   /* orange light */
+  --Od:  #c06020;   /* orange dark  */
+  --C:   #F5EDD8;   /* cream text   */
+  --Cl:  #fdf8ef;   /* cream bg     */
+  --W:   #ffffff;
+  --BG:  #eaecf4;   /* page bg      */
+  --G:   #f2f4f8;   /* gray light   */
+  --Gm:  #dde1ec;   /* gray mid (border) */
+  --Gd:  #b0b8cc;   /* gray dark    */
+  --GR:  #22c97e;   /* green status */
+
+  /* — Text — */
+  --T:   #111827;   /* text primary   */
+  --Tm:  #4a5572;   /* text medium    */
+  --Tl:  #8a95b0;   /* text light     */
+
+  /* — Danger — */
+  --danger:       #e53e3e;
+  --danger-light: #fff5f5;
+
+  /* — Radius — */
+  --r:   12px;
+  --rl:  20px;
+  --rxl: 28px;
+
+  /* — Shadows — */
+  --s1: 0 2px 16px rgba(45,58,95,.10);
+  --s2: 0 6px 32px rgba(45,58,95,.15);
+  --s3: 0 12px 48px rgba(45,58,95,.20);
+
+  /* — Typography — */
+  --font-body:    'Poppins', sans-serif;
+  --font-display: 'Playfair Display', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--BG); color: var(--T); }
